@@ -122,7 +122,7 @@
 
 ### **Inpainting & Font Style Transfer : MOSTEL**
 
-**MOSTEL Architecture & Method**
+#### **MOSTEL Architecture & Method**
 <img width="816" alt="스크린샷 2023-07-27 오전 11 28 11" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/68e5e24f-92b2-4fc7-bd79-127d3ffc1cb5">
 
 **BRM** : 배경에서 유지해야 하는 영역을 분할 및 보존하여 텍스트를 지워주는 모듈
@@ -156,7 +156,7 @@
 
 ---
 
-**MOSTEL 데이터셋**
+#### **MOSTEL 데이터셋**
 
 **[합성 이미지 데이터]** : 기존의 MOSTEL 모델은 이미지 내에 있는 영어 글자 스타일을 다른 영어 단어에 반영한 이미지를 생성하는 모델이다. 본 프로젝트는 영어가 아닌 한국어를 영어로 바꾸어 이미지를 생성하는 모델이므로, 영어로만 학습된 MOSTEL을 Fine Tuning하기 위해 한국어-영어 버전의 데이터셋 생성하였다.
 
@@ -301,7 +301,7 @@
 2. 글자를 제거할 좌표 클릭
 3. 제거한 이미지를 원래 글자 위치에 Projection
 
-[MOSTEL BRM 모듈 Custom화]
+### [MOSTEL BRM 모듈 Custom화]
 
 <img width="746" alt="스크린샷 2023-07-27 오전 11 48 26" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/1fe9d75a-1660-4bb8-9d56-401077a2770b">
 
@@ -312,26 +312,11 @@
 
 - 기존 MOSTEL BRM 모듈의 Inpainting 원리로 학습하였을 때 글자 테두리가 남는 문제가 발생하였으며, 자연스러운 배경 이미지를 생성하기 위해 **cv2.Dilate**를 사용하여 **Masking Image에 글자 팽창을 적용**시켰다. 적용시킨 Masking Image를 Guide한 결과 Background를 보존한 채로 글자만 제거하여 성능을 개선하였다.
 
-[MOSTEL Pre-Transformation 모듈 Custom화]
+### [MOSTEL Pre-Transformation 모듈 Custom화]
 <img width="744" alt="스크린샷 2023-07-27 오전 11 49 11" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/5d520d1b-2cb5-42e7-a593-fff803e92d89">
 
 - **TMM의 Text Recognition 원리** : 글자를 인식할 수 있는 Recognizer를 사용하여 글자의 위치, 방향, 색상 등 원본 이미지의 글자에 대한 특징을 Target Text에 적용
 - 영어로만 학습되어 있기에 한국어 Font Style을 학습하지 못 하고 Target Text에 Font Style이 적용되지 않는 문제가 발생하였으며, 이를 해결하기 위해 Mostel의 구조 파악 후 Recognizer 모듈을 커스텀하여 **한국어와 영어 두 언어 모두 인식**할 수 있도록 학습하여 성능을 개선하였다.
-
----
-
-## 향후 계획
-
-### 신경망 기반 고화질 변환 : Real-ESRGAN
-<img width="773" alt="스크린샷 2023-07-27 오전 11 49 29" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/01264a0a-9f02-4fcf-9b39-6e50cb83544d">
-
-- 기존 Text 이미지에 비해 저화질로 생성된 Text Font Style Transfer 이미지의 화질을 높이기 위해 GAN을 활용하여 현실적이고 자연스러운 이미지를 생성하여 시각적인 품질 향상시킨다.
-
-### 객체 탐지 및 추적 : Siamese Network
-
-<img width="756" alt="스크린샷 2023-07-27 오전 11 49 46" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/12b139df-3ca6-4221-a721-69d60cc2ad5c">
-
-- 기존의 편집된 영상은 프레임 합성 시에 프레임 간의 차이가 존재하여 흔들림 또는 불일치 현상이 발생한다. 이를 개선하기 위해 Siamese Network를 사용하여 두 개의 프레임을 비교하여 프레임 합성 시에 발생하는 흔들림 현상을 최소화하고, 자연스러운 동영상 생성한다.
 
 ---
 
