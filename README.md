@@ -335,7 +335,6 @@
 - 네이버에서 진행중인 “더 잘 읽히는 번역기” 프로젝트의 일부로, 현재 원본 이미지 내의 텍스트를 지우고 번역된 텍스트를 Fusion하는 프로젝트가 존재한다.
 
 <img width="824" alt="스크린샷 2023-07-27 오전 11 51 09" src="https://github.com/Yu-Miri/Text_Translation_and_Font_Style_Editing_in_Video/assets/121469490/274b3bbe-8839-461e-adf6-06988cd64358">
-b-b9d7-66110735cc99">
 
 - 위의 사진과 같이 파파고 번역기는 배경이 완전히 지워지지 않고 Font Style을 반영하지 못 하지만, 우리의 모델을 배경을 최대한 보존하여 글자 색상과 Font Style을 반영할 수 있다.
 
